@@ -1,0 +1,87 @@
+{% extends "school_admin/master.html" %}
+
+{% block content %}
+<div class="container d-flex justify-content-center " style="min-height: 100vh;">
+    <div class="col-md-6">
+        <div class="card-body">
+            <h3 class="text-center py-3" style="font-weight: bolder;">Add Teacher</h3>
+             
+            {% if message %}
+           <div class="alert  mt-3"  style="background-color: #EE4266;color: white;" id="error-msg" role="alert">
+            {{ message }}
+          </div>
+          {% endif %}
+            <form method="POST">
+                {% csrf_token %}
+                <div class="mb-1">
+                    <label for="teacher_id" class="form-label text-dark py-2">Teacher ID</label>
+                    <input type="number"class="form-control" name="teacherId" id="">
+                </div>
+                <div class="mb-1">
+                    <label for="teacherName" class="form-label text-dark py-2">Teacher Name</label>
+                    <input type="text" class="form-control" name="teacherName" id="">
+                </div>
+                <div class="mb-1">
+                    <label for="class" class="form-label text-dark py-2">Class</label>
+                    <select name="cls" required class="form-control" id="">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+
+                    </select>
+                </div>
+                <div class="mb-1">
+                    <label for="division" class="form-label text-dark py-2">Division</label>
+                    <select name="division" required class="form-control" id="">
+                        <option value="a">A</option>
+                        <option value="b">B</option>
+                        <option value="c">C</option>
+                        <option value="d">D</option>
+                        <option value="e">E</option>
+                        <option value="f">F</option>
+                        <option value="g">G</option>
+                        <option value="h">H</option>
+                        <option value="i">I</option>
+                        <option value="j">J</option>
+                    </select>
+                </div>
+                <div class="mb-1">
+                    <label for="section" class="form-label text-dark py-2">Section</label>
+                    <select name="section" required class="form-control" id="">
+                        <option value="g">Girls</option>
+                        <option value="b">Boys</option>
+                    </select>
+                </div>
+                 
+                 
+                 
+                <div>
+                <button type="submit" class="btn btn-primary d-flex justify-content-center w-100">Add Now</button>
+
+                </div>
+            </form>
+
+            
+        </div>
+    </div>
+ 
+ 
+
+    <script>
+        setTimeout(function() {
+           var errorMsg = document.getElementById('error-msg');
+           if (errorMsg) {
+              errorMsg.style.display = 'none';
+           }
+        }, 2000); // 5000 milliseconds = 5 seconds
+     </script>
+</div>
+{% endblock %}
+ 

@@ -1,0 +1,226 @@
+{% extends 'school_student/master.html' %} 
+{% block content %}
+<div
+  class="container "
+>
+    <div class="row">
+
+            <div class="col-md-12">
+                <div class="table-responsive">
+
+            <h3 class="text-center py-3" style="font-weight: bolder;">View Notes</h3>
+                
+                <table class="table table-hover  table-primary">
+                    <thead>
+                        <tr class="text-center ">
+                            <th>SL NO</th>
+                            <th>Subject</th>
+                            <th>Description</th> 
+                            <th>Added Date</th> 
+                            <th>Added By</th>
+                            <th></th>
+
+                            
+                         
+                            
+                             
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in notes %}
+                        <tr class="text-center">
+                            <td>{{forloop.counter}}</td>
+                            <td>{{ item.subject|title }}</td>
+                            <td>{{ item.description|capfirst }}</td>
+                            <td>{{ item.date | title }}</td>
+
+                            <td>{{item.added_by | title}}</td>
+                            <td><a href="{{item.file.url}}" target="_blank">Download</a></td>
+                           
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            </div>
+    </div>
+     
+
+    <!-- moral/islamic -->
+
+    <div class="modal fade" id="moralModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+               
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    
+                    <form method="POST">
+                        {% csrf_token %}
+                        <table style="border-collapse: separate;border-spacing: 10px;">
+                            <tr>
+                                 
+                                <td>
+                                    <select name="moralType" style="font-size: 18px;font-weight: bold;" id="" class="form-control">
+                                        <option value="moral science">Moral Science</option>
+                                        <option value="islamic studies">Islamic Studies</option>
+                                    </select>
+                                </td>
+                            </tr>
+                             
+                                <td><input type="hidden" name="moralStudentId" id="moralStudentId"></td>
+                             
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <input class="btn btn-success" type="submit" value="Submit" name="moral" id="">
+                                </td>
+                            </tr>
+                        </table>
+                         
+                    </form>
+                </div>
+                 
+            </div>
+        </div>
+    </div>
+    
+    <!-- moral/islamic --> 
+
+ <!-- second -->
+
+ <div class="modal fade" id="secondModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+           
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                
+                <form method="POST">
+                    {% csrf_token %}
+                    <table style="border-collapse: separate;border-spacing: 10px;">
+                        <tr>
+                             
+                            <td>
+                                <select name="secondLanguage" style="font-size: 18px;font-weight: bold;" id="" class="form-control">
+                                    <option value="urdu 1">URDU 1</option>
+                                    <option value="hindi">Hindi</option>
+                                </select>
+                            </td>
+                        </tr>
+                         
+                            <td><input type="hidden" name="secondStudentId" id="secondStudentId"></td>
+                         
+                        <tr>
+                            <td></td>
+                            <td>
+                                <input class="btn btn-success" type="submit" value="Submit" name="second" id="">
+                            </td>
+                        </tr>
+                    </table>
+                     
+                </form>
+            </div>
+             
+        </div>
+    </div>
+</div>
+
+<!-- second --> 
+
+<!-- third -->
+
+<div class="modal fade" id="thirdModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+           
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                
+                <form method="POST">
+                    {% csrf_token %}
+                    <table style="border-collapse: separate;border-spacing: 10px;">
+                        <tr>
+                            <td>
+                                <label for="admission_no" style="font-size: 20px;font-weight: bold;" class="form-label text-dark py-2">Select</label>
+                            </td>
+                            <td>
+                                <select name="thirdLanguage" style="font-size: 18px;font-weight: bold;" id="" class="form-control">
+                                     
+                                    <option value="malayalam">Malayalam</option>
+                                    <option value="urdu1">URDU 1</option>
+                                  
+                                </select>
+                            </td>
+                        </tr>
+                         
+                            <td><input type="text" name="thirdStudentId" id="thirdStudentId"></td>
+                         
+                        <tr>
+                            <td></td>
+                            <td>
+                                <input class="btn btn-success" type="submit" value="Submit" name="third" id="">
+                            </td>
+                        </tr>
+                    </table>
+                     
+                </form>
+            </div>
+             
+        </div>
+    </div>
+</div>
+
+<!-- third --> 
+
+    
+
+
+    <script>
+        // JavaScript to load the image into the modal
+        document.addEventListener('DOMContentLoaded', function () {
+            const imageLinks = document.querySelectorAll('.view-pic');
+            
+            imageLinks.forEach(link => {
+                link.addEventListener('click', function () {
+                    const imageUrl = this.getAttribute('data-image-url');
+                    const modalImage = document.getElementById('modalImage');
+                    
+                    // Set the image source to the clicked image URL
+                    modalImage.src = imageUrl;
+                });
+            });
+        });
+        </script>
+
+
+<script>
+   
+   function getStudentId(id, subject){
+    console.log(subject,id)
+    if(subject == 'moral'){
+    document.getElementById('moralStudentId').value = id
+
+    }
+    else if(subject == 'second'){
+         console.log(id,'--')
+    document.getElementById('secondStudentId').value = id
+
+    }
+    else if(subject == 'third'){
+    document.getElementById('thirdStudentId').value = id
+
+    }
+   }
+    </script>
+    
+    {% endblock %}
+
+
+ 

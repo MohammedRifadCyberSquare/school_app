@@ -1,0 +1,50 @@
+{% extends 'school_admin/master.html' %}
+
+{% block content %}
+<div class="container d-flex justify-content-center " style="min-height: 100vh;">
+    <div class="col-md-12">
+        
+        <div  style="margin-top: 100px;display: flex;justify-content: center;">
+            <h2>Teachers List</h2>
+        </div>
+        <div class=" ">
+            <table class="table table-bordered table-primary table-hover table-striped">
+                <thead class="thead-dark text-center">
+                    <tr>
+                        <th>SL No.</th>
+                        <th>ID</th>
+                        <th>Teacher Name</th>
+                        <th>Class</th>
+                        <th>Division</th>
+                       
+                    </tr>
+                </thead>
+                <tbody class="text-center">
+                    {% for teacher in teachers_list %}
+                    <tr>
+                         
+                        <td>{{forloop.counter }}</td>
+                        <td>{{ teacher.teacher_id}}</td>
+                        <td>{{ teacher.teacher_name | title }}</td>
+                        <td>{{ teacher.teacher_class | capfirst }}</td>
+                        <td>{{ teacher.division | title }}</td>
+                        
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+ 
+ 
+
+    <script>
+        setTimeout(function() {
+           var errorMsg = document.getElementById('error-msg');
+           if (errorMsg) {
+              errorMsg.style.display = 'none';
+           }
+        }, 2000); // 5000 milliseconds = 5 seconds
+     </script>
+</div>
+{% endblock %}
